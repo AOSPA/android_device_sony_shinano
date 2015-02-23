@@ -151,6 +151,8 @@ PRODUCT_PACKAGES += \
     ta_qmi_service
 
 PRODUCT_PACKAGES += \
+    timekeep \
+    TimeKeep \
     thermanager \
     bt_addr
 
