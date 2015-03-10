@@ -163,7 +163,7 @@ PRODUCT_PACKAGES += \
     timekeep \
     TimeKeep \
     thermanager \
-    bt_addr
+    addrsetup
 
 PRODUCT_PACKAGES += \
     rmt_storage
