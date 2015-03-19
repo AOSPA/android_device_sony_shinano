@@ -187,6 +187,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     e2fsck
 
+# Extract recovery ramdisks
+PRODUCT_PACKAGES += \
+    extract_elf_ramdisk
+
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 # APN list

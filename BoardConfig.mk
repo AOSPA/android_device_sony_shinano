@@ -33,18 +33,22 @@ BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
 BOARD_RAMDISK_OFFSET     := 0x02000000
 
 BOARD_KERNEL_BOOTIMG := true
+BOARD_CUSTOM_BOOTIMG := true
 BOARD_CUSTOM_MKBOOTIMG := mkqcdtbootimg
+BOARD_CUSTOM_BOOTIMG_MK := device/sony/recovery/custombootimg.mk
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset $(BOARD_RAMDISK_OFFSET) --tags_offset $(BOARD_KERNEL_TAGS_OFFSET)
-BOARD_MKBOOTIMG_ARGS += --dt_dir $(OUT)/dtbs
+BOARD_MKBOOTIMG_ARGS += --dt_dir device/sony/$(TARGET_DEVICE)/dtbs
 
-BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.hardware=shinano user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 selinux=0
-BOARD_KERNEL_CMDLINE += dwc3.maximum_speed=high dwc3_msm.prop_chg_detect=Y
+BOARD_KERNEL_CMDLINE := androidboot.hardware=shinano user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3
+BOARD_KERNEL_CMDLINE += dwc3.maximum_speed=high dwc3_msm.prop_chg_detect=Y console=ttyHSL0,115200,n8 androidboot.selinux=permissive
 
 TARGET_USERIMAGES_USE_EXT4 := true
 BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2671771648
 BOARD_CACHEIMAGE_PARTITION_SIZE := 209715200
 BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
+
+TARGET_RECOVERY_FSTAB = device/sony/shinano/rootdir/fstab.shinano
 
 USE_OPENGL_RENDERER := true
 TARGET_USES_C2D_COMPOSITION := true
@@ -86,6 +90,9 @@ TARGET_SYSTEM_PROP := device/sony/shinano/system.prop
 # NFC
 BOARD_NFC_CHIPSET := pn547
 BOARD_NFC_HAL_SUFFIX := $(TARGET_BOARD_PLATFORM)
+
+# SELinux
+include device/sony/sepolicy/sepolicy.mk
 
 # Include an expanded selection of fonts
 EXTENDED_FONT_FOOTPRINT := true
